@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"></head>
+<title>Rock Paper Scissors</title>
+    <script>
+
+        //Computer randomly selects rock, paper or scissors.
+        function computerPlay(){
+            let x = Math.random() * 3;
+            
+            if (x < 1)
+            {
+                return 'rock';
+            }
+            if (x < 2)
+            {
+                return 'paper';
+            }
+            else
+            {
+                return 'scissors';
+            }
+        }
+
+        //Play a round function. Get user input and computer input.
+        function playRound(playerSelection, computerSelection)
+        {
+            var ps = playerSelection.toLowerCase();
+            var cs = computerSelection.toLowerCase();
+
+            if (ps == cs)
+            {
+                return 'Tie, ' + ps + ' ties with ' + cs + '.';
+            }
+            else if ((ps == 'rock' && cs == 'scissors') || (ps == 'scissors' && cs == 'paper') || (ps == 'paper' && cs == 'rock'))
+            {
+                return 'You win, ' + ps + ' beats ' + cs +'.';
+            }
+            else
+            {
+                return 'You lose, ' + cs + ' beats ' + ps + '.';
+            }
+        }
+
+        //Plays 5 rounds of the game. Keeps track of round and score.
+        function game(){
+
+            var j = 0; k = 0;
+
+            for (var i = 0; i < 5; i++)
+            {  
+                console.log('Round: ' + (i+1) + ' Player: ' + j + ' Computer: ' + k);
+                var playerSelection = prompt("Pick rock, paper or scissors!");
+                var computerSelection = computerPlay();
+                var result = playRound(playerSelection, computerSelection);
+                console.log(result);
+
+                if (result.search('win') > 0)
+                {
+                    j++;
+                }
+                else if (result.search('lose') > 0)
+                {
+                    k++;
+                }
+
+            }
+            if (j > k)
+            {
+                console.log('You win!');
+            }
+            else if (k > j)
+            {
+                console.log('You lose!')
+            }
+            else
+            {
+                console.log('Tie!')
+            }
+        }
+
+        game();
+
+    </script>
+</html>
